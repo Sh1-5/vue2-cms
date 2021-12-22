@@ -14,6 +14,12 @@ Vue.use(ElementUI)
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
+// 引入 normalize.css
+import 'normalize.css'
+
+// 自定义 css
+import './assets/css/index.css'
+
 new Vue({
   render: (h) => h(App),
   router,
