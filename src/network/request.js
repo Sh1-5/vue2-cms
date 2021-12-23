@@ -1,5 +1,7 @@
 const axios = require('axios')
 
+import localCache from '@/utils/cache'
+
 const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 5000
@@ -8,10 +10,10 @@ const request = axios.create({
 // 请求拦截
 request.interceptors.request.use(
   (config) => {
-    // const token = useUserStore().getToken
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`
-    // }
+    const token = localCache.getCache('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   },
   (err) => {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="account" :rules="rules" label-width="60px">
+    <el-form :model="account" :rules="rules" ref="accountForm" label-width="60px">
       <el-form-item label="账号" prop="username">
         <el-input v-model="account.username" />
       </el-form-item>
@@ -12,12 +12,14 @@
 </template>
 
 <script>
+import localCache from '@/utils/cache'
+
 export default {
   data() {
     return {
       account: {
-        username: '',
-        password: ''
+        username: localCache.getCache('username') ?? '',
+        password: localCache.getCache('password') ?? ''
       },
       rules: {
         username: [
@@ -39,7 +41,34 @@ export default {
       }
     }
   },
-  methods: {}
+  mounted() {
+    console.log(this.account)
+  },
+  methods: {
+    login(isKeepPassword) {
+      this.$refs.accountForm.validate((valid) => {
+        if (valid) {
+          // 判断是否需要记住密码
+          if (isKeepPassword) {
+            // 本地缓存
+            localCache.setCache('username', this.account.username)
+            localCache.setCache('password', this.account.password)
+            this.$store.dispatch('loginModule/accountLoginAction', this.account)
+          } else {
+            // 删除缓存
+            localCache.deleteCache('username')
+            localCache.deleteCache('password')
+            this.$store.dispatch('loginModule/accountLoginAction', this.account)
+          }
+        } else {
+          this.$message({
+            type: 'error',
+            message: '请输入正确的账号和密码'
+          })
+        }
+      })
+    }
+  }
 }
 </script>
 

@@ -1,14 +1,14 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs v-model="activeName" type="border-card" stretch>
+      <el-tab-pane name="account">
         <span slot="label"><i class="el-icon-user"></i>账号登录</span>
-        <login-account />
+        <login-account ref="account" />
       </el-tab-pane>
-      <el-tab-pane label="消息中心">
+      <el-tab-pane name="phone">
         <span slot="label"><i class="el-icon-mobile-phone"></i>手机登录</span>
-        <login-phone />
+        <login-phone ref="phone" />
       </el-tab-pane>
     </el-tabs>
     <div class="account-control">
@@ -26,6 +26,7 @@ import LoginPhone from './login-phone.vue'
 export default {
   data() {
     return {
+      activeName: 'account',
       isKeepPassword: false
     }
   },
@@ -35,7 +36,11 @@ export default {
   },
   methods: {
     handleLogin() {
-      console.log('login')
+      if (this.activeName === 'account') {
+        this.$refs.account.login(this.isKeepPassword)
+      } else {
+        console.log('手机登录')
+      }
     }
   }
 }

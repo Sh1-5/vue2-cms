@@ -20,6 +20,9 @@ import 'normalize.css'
 // 自定义 css
 import './assets/css/index.css'
 
+import { setupStore } from './store'
+setupStore()
+
 new Vue({
   render: (h) => h(App),
   router,
