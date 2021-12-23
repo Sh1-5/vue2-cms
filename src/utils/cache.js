@@ -5,7 +5,9 @@ class LocalCache {
 
   getCache(key) {
     const value = window.localStorage.getItem(key)
-    return JSON.parse(value)
+    if (value) {
+      return JSON.parse(value)
+    }
   }
 
   deleteCache(key) {

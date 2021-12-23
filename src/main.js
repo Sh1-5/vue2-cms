@@ -20,6 +20,7 @@ import 'normalize.css'
 // 自定义 css
 import './assets/css/index.css'
 
+// 将缓存总的信息放到 store 中
 import { setupStore } from './store'
 setupStore()
 
