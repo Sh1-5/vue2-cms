@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'NavHeader',
   data() {
     return {
       isFold: false
@@ -27,7 +28,7 @@ export default {
 <style scoped lang="scss">
 .nav-header {
   .fold-menu {
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
   }
 }

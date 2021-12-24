@@ -23,7 +23,7 @@
             </template>
             <!-- 遍历二级菜单 -->
             <template v-for="subitem in item.children">
-              <el-menu-item :index="String(subitem.id)">
+              <el-menu-item :index="String(subitem.id)" @click="handleMenuItem(subitem)">
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span class="menu-name">{{ subitem.name }}</span>
               </el-menu-item>
@@ -31,7 +31,7 @@
           </el-submenu>
         </template>
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="String(item.id)">
+          <el-menu-item :index="String(item.id)" @click="handleMenuItem(item)">
             <i v-if="item.icon" :class="item.icon"></i>
             <span class="menu-name">{{ item.name }}</span>
           </el-menu-item>
@@ -43,6 +43,7 @@
 
 <script>
 export default {
+  name: 'NavMenu',
   data() {
     return {}
   },
@@ -57,7 +58,11 @@ export default {
       return this.$store.state.loginModule.userMenus
     }
   },
-  methods: {}
+  methods: {
+    handleMenuItem(item) {
+      this.$router.push(item.url)
+    }
+  }
 }
 </script>
 

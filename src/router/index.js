@@ -7,6 +7,7 @@ import localCache from '@/utils/cache'
 
 const Login = () => import('views/login/index.vue')
 const Main = () => import('views/main/index.vue')
+const NotFound = () => import('views/not-found/index.vue')
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 

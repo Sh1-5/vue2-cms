@@ -15,6 +15,7 @@
 import localCache from '@/utils/cache'
 
 export default {
+  name: 'LoginAccount',
   data() {
     return {
       account: {

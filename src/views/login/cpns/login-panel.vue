@@ -24,6 +24,7 @@ import LoginAccount from './login-account.vue'
 import LoginPhone from './login-phone.vue'
 
 export default {
+  name: 'LoginPanel',
   data() {
     return {
       activeName: 'account',

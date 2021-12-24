@@ -1,5 +1,6 @@
 import localCache from '@/utils/cache'
 import router from '@/router'
+import mapMenusToRoutes from '@/utils/map-menus'
 
 import { accountLogin, getUserInfoById, getUserMenusById } from '@/api/login'
 
@@ -19,6 +20,12 @@ export default {
     },
     changeUserMenus(state, userMenus) {
       state.userMenus = userMenus
+      const routes = mapMenusToRoutes(userMenus)
+      // 已废弃
+      // router.addRoutes(routes)
+      for (const item of routes) {
+        router.addRoute('Main', item)
+      }
     }
   },
   actions: {

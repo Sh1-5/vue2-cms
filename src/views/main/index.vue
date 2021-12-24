@@ -8,7 +8,9 @@
         <el-header class="page-header">
           <NavHeader @foldChange="foldChange" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -19,6 +21,7 @@ import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
 
 export default {
+  name: 'Main',
   data() {
     return {
       isFold: false

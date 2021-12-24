@@ -8,6 +8,7 @@
 import LoginPanel from './cpns/login-panel.vue'
 
 export default {
+  name: 'Login',
   data() {
     return {}
   },
