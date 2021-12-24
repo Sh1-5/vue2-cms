@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h2>Not Found</h2>
+  <div class="not-found">
+    <el-button class="back" @click="back">返回</el-button>
+    <img src="~@/assets/img/404.svg" alt="" />
   </div>
 </template>
 
@@ -10,8 +11,26 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    back() {
+      this.$router.back()
+    }
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  .back {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+}
+</style>
