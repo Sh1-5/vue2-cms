@@ -27,7 +27,6 @@ export default {
   components: { NavMenu, NavHeader },
   methods: {
     foldChange(isFold) {
-      console.log(isFold)
       this.isFold = isFold
     }
   }

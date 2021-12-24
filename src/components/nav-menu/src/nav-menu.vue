@@ -5,6 +5,7 @@
       <span v-if="!isCollapse" class="title">vue2-cms</span>
     </div>
     <el-menu
+      :collapse-transition="false"
       default-active="2"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
@@ -12,8 +13,8 @@
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
     >
-      <!-- 遍历一级菜单，使用 v-for 时不可使用 template -->
-      <div v-for="item in userMenus" :key="item.id">
+      <!-- 遍历一级菜单，使用 v-for + :key 时不可使用 template -->
+      <template v-for="item in userMenus">
         <template v-if="item.type === 1">
           <el-submenu :index="String(item.id)">
             <template slot="title">
@@ -21,12 +22,12 @@
               <span class="menu-name">{{ item.name }}</span>
             </template>
             <!-- 遍历二级菜单 -->
-            <div v-for="subitem in item.children" :key="subitem.id">
+            <template v-for="subitem in item.children">
               <el-menu-item :index="String(subitem.id)">
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span class="menu-name">{{ subitem.name }}</span>
               </el-menu-item>
-            </div>
+            </template>
           </el-submenu>
         </template>
         <template v-else-if="item.type === 2">
@@ -35,7 +36,7 @@
             <span class="menu-name">{{ item.name }}</span>
           </el-menu-item>
         </template>
-      </div>
+      </template>
     </el-menu>
   </div>
 </template>
