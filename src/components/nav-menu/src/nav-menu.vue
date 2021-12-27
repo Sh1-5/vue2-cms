@@ -23,7 +23,10 @@
             </template>
             <!-- 遍历二级菜单 -->
             <template v-for="subitem in item.children">
-              <el-menu-item :index="String(subitem.id)" @click="handleMenuItem(subitem)">
+              <el-menu-item
+                :index="String(subitem.id)"
+                @click="handleMenuItem(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span class="menu-name">{{ subitem.name }}</span>
               </el-menu-item>
@@ -60,7 +63,9 @@ export default {
   },
   methods: {
     handleMenuItem(item) {
-      this.$router.push(item.url)
+      if (this.$route.path !== item.url) {
+        this.$router.push(item.url)
+      }
     }
   }
 }
@@ -70,6 +75,7 @@ export default {
 .nav-menu {
   height: 100%;
   background: #001529;
+  user-select: none;
 
   .logo {
     display: flex;

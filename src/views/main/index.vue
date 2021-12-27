@@ -9,7 +9,7 @@
           <NavHeader @foldChange="foldChange" />
         </el-header>
         <el-main class="page-content">
-          <router-view></router-view>
+          <div class="page-content-container"><router-view></router-view></div>
         </el-main>
       </el-container>
     </el-container>
@@ -52,13 +52,16 @@ export default {
 
 .page-content {
   height: calc(100% - 48px);
+
+  .page-content-container {
+    background: #ffffff;
+    border-radius: 5px;
+  }
 }
 
 .el-header {
   display: flex;
   color: #333;
-  text-align: center;
-  align-items: center;
 }
 
 .el-main {
