@@ -6,12 +6,7 @@
       @click="handleFold"
     ></i>
     <div class="content">
-      <div>
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
-      </div>
+      <NavBreadCrumb :breadCrumb="breadCrumb" />
       <UserInfo />
     </div>
   </div>
@@ -19,6 +14,8 @@
 
 <script>
 import UserInfo from './user-info.vue'
+import NavBreadCrumb from '@/base-ui/bread-crumb'
+import { pathMapBreadCrumb } from '@/utils/map-menus'
 
 export default {
   name: 'NavHeader',
@@ -28,7 +25,16 @@ export default {
     }
   },
   components: {
-    UserInfo
+    UserInfo,
+    NavBreadCrumb
+  },
+  computed: {
+    userMenus() {
+      return this.$store.state.loginModule.userMenus
+    },
+    breadCrumb() {
+      return pathMapBreadCrumb(this.userMenus, this.$route.path)
+    }
   },
   methods: {
     handleFold() {

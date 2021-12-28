@@ -6,7 +6,7 @@
     </div>
     <el-menu
       :collapse-transition="false"
-      default-active="2"
+      :default-active="String(defaultActive.id)"
       class="el-menu-vertical-demo"
       :collapse="isCollapse"
       background-color="#0c2135"
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { pathMapMenu } from '@/utils/map-menus'
+
 export default {
   name: 'NavMenu',
   data() {
@@ -59,6 +61,9 @@ export default {
   computed: {
     userMenus() {
       return this.$store.state.loginModule.userMenus
+    },
+    defaultActive() {
+      return pathMapMenu(this.userMenus, this.$route.path)
     }
   },
   methods: {

@@ -15,7 +15,9 @@ module.exports = {
   // 忽略菜单组件中 v-for 必须搭配 :key 使用的错误
   ignorePatterns: [
     'src/components/nav-menu/src/nav-menu.vue',
-    'src/base-ui/form/src/form.vue'
+    'src/base-ui/form/src/form.vue',
+    'src/base-ui/bread-crumb/src/bread-crumb.vue',
+    'src/base-ui/table/src/table.vue'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

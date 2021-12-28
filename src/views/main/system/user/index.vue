@@ -1,64 +1,38 @@
 <template>
   <div class="user">
-    <div class="search">
-      <IForm v-bind="searchFormConfig" />
-    </div>
+    <PageSearch :searchFormConfig="searchFormConfig" />
+    <PageContent
+      :contentTableConfig="contentTableConfig"
+      :dataList="dataList"
+    />
   </div>
 </template>
 
 <script>
-import IForm from '@/base-ui/form'
+import searchFormConfig from './config/search'
+import contentTableConfig from './config/content'
+
+import PageSearch from '@/components/page-search'
+import PageContent from '@/components/page-content'
+
+import { getUserList } from '@/api/main/system/user'
 
 export default {
   name: 'User',
   data() {
     return {
-      searchFormConfig: {
-        formItems: [
-          {
-            type: 'input',
-            label: '用户名',
-            placeholder: '请输入用户名'
-          },
-          {
-            type: 'select',
-            label: '爱好',
-            placeholder: '请选择爱好',
-            options: [
-              {
-                label: '篮球',
-                value: 'basketball'
-              },
-              {
-                label: '足球',
-                value: 'football'
-              }
-            ]
-          },
-          {
-            type: 'datepicker',
-            label: '创建时间',
-            otherOptions: {
-              startPlaceholder: '开始时间',
-              endPlaceholder: '结束时间',
-              type: 'daterange'
-            }
-          }
-        ],
-        labelWidth: '100px',
-        itemStyle: { padding: '5px 30px' },
-        colLayout: {
-          xl: 6,
-          lg: 8,
-          md: 12,
-          sm: 24,
-          xm: 24
-        }
-      }
+      searchFormConfig,
+      dataList: [],
+      contentTableConfig
     }
   },
   components: {
-    IForm
+    PageSearch,
+    PageContent
+  },
+  async created() {
+    const res = await getUserList({ offset: 0, size: 10 })
+    this.dataList = res.list
   },
   methods: {}
 }

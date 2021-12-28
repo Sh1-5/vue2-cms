@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import localCache from '@/utils/cache'
+import { firstMenu } from '@/utils/map-menus'
 
 const Login = () => import('views/login/index.vue')
 const Main = () => import('views/main/index.vue')
@@ -45,6 +46,11 @@ router.beforeEach((to, from, next) => {
       next({ name: 'Login' })
     }
   }
+
+  if (to.path === '/main') {
+    next({ path: firstMenu.url })
+  }
+
   next()
 })
 
