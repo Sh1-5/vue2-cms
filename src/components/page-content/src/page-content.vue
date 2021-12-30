@@ -1,13 +1,20 @@
 <template>
   <div class="page-content">
-    <ITable :dataList="dataList" v-bind="contentTableConfig">
+    <ITable
+      :dataList="dataList"
+      v-bind="contentTableConfig"
+      :listCount="listCount"
+      :pageInfo="pageInfo"
+      @handleSizeChange="handleSizeChange"
+      @handleCurrentChange="handleCurrentChange"
+    >
       <!-- header 中的插槽 -->
       <template v-slot:header-handler>
         <el-button type="primary" size="medium" icon="el-icon-plus"
           >新建</el-button
         >
       </template>
-      <!-- 列中的插槽 -->
+      <!-- 公共插槽 -->
       <template v-slot:enable="scope">
         <el-tag :type="scope.row.enable ? 'success' : 'danger'">{{
           scope.row.enable ? '启用' : '禁用'
@@ -19,11 +26,27 @@
       <template v-slot:updateAt="scope">
         <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
       </template>
-      <template v-slot:handler>
-        <el-button size="mini" type="text" icon="el-icon-edit">编辑</el-button>
-        <el-button size="mini" type="text" icon="el-icon-delete"
+      <template v-slot:handler="scope">
+        <el-button
+          size="mini"
+          type="text"
+          icon="el-icon-edit"
+          @click="edit(scope.row)"
+          >编辑</el-button
+        >
+        <el-button
+          size="mini"
+          type="text"
+          icon="el-icon-delete"
+          @click="remove(scope.row)"
           >删除</el-button
         >
+      </template>
+      <!-- 动态插槽 -->
+      <template v-for="item in otherPropSlots" v-slot:[item.slotName]="scope">
+        <template v-if="item.slotName">
+          <slot :name="item.slotName" :row="scope.row"></slot>
+        </template>
       </template>
     </ITable>
   </div>
@@ -45,12 +68,48 @@ export default {
     dataList: {
       type: Array,
       required: true
+    },
+    listCount: {
+      type: Number,
+      default: 0
+    },
+    pageInfo: {
+      type: Object,
+      default: () => {
+        return {
+          size: 10,
+          current: 1
+        }
+      }
+    }
+  },
+  computed: {
+    otherPropSlots() {
+      return this.contentTableConfig.propList.filter((item) => {
+        if (item.slotName === 'createAt') return false
+        if (item.slotName === 'updateAt') return false
+        if (item.slotName === 'handler') return false
+        return true
+      })
     }
   },
   components: {
     ITable
   },
-  methods: {}
+  methods: {
+    handleSizeChange(size) {
+      this.$emit('handleSizeChange', size)
+    },
+    handleCurrentChange(current) {
+      this.$emit('handleCurrentChange', current)
+    },
+    edit(row) {
+      this.$emit('edit', row)
+    },
+    remove(row) {
+      this.$emit('remove', row)
+    }
+  }
 }
 </script>
 

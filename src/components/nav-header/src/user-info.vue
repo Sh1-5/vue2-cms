@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import localCache from '@/utils/cache'
+
 export default {
   name: 'UserInfo',
   data() {
@@ -28,8 +30,10 @@ export default {
   },
   methods: {
     handleCommand(command) {
-      console.log(command)
-      // 退出操作
+      if (command === 'logout') {
+        localCache.clearCache()
+        this.$router.push('/login')
+      }
     }
   }
 }

@@ -5,8 +5,16 @@ export function getUserList(data) {
     url: '/users/list',
     method: 'post',
     data: {
-      offset: data.offset,
-      size: data.size
+      offset: 0,
+      size: 10,
+      ...data
     }
+  })
+}
+
+export function deleteUser(data) {
+  return request({
+    url: '/users/' + data,
+    method: 'delete'
   })
 }

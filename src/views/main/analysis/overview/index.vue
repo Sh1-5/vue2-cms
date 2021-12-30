@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h2>Overview</h2>
-  </div>
+  <div class="overview"></div>
 </template>
 
 <script>

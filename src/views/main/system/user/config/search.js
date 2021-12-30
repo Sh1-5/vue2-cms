@@ -1,24 +1,36 @@
 export default {
   formItems: [
     {
-      field: 'username',
+      field: 'name',
       type: 'input',
       label: '用户名',
       placeholder: '请输入用户名'
     },
     {
-      field: 'hobby',
+      field: 'realname',
+      type: 'input',
+      label: '真实姓名',
+      placeholder: '请输入真实姓名'
+    },
+    {
+      field: 'cellphone',
+      type: 'input',
+      label: '电话号码',
+      placeholder: '请输入电话号码'
+    },
+    {
+      field: 'enable',
       type: 'select',
-      label: '爱好',
-      placeholder: '请选择爱好',
+      label: '用户状态',
+      placeholder: '请选择用户状态',
       options: [
         {
-          label: '篮球',
-          value: 'basketball'
+          label: '启用',
+          value: 1
         },
         {
-          label: '足球',
-          value: 'football'
+          label: '禁用',
+          value: 0
         }
       ]
     },

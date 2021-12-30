@@ -58,8 +58,11 @@ export default {
     },
     reset() {
       this.initFormData()
+      this.$emit('reset')
     },
-    search() {}
+    search() {
+      this.$emit('search', this.formData)
+    }
   }
 }
 </script>

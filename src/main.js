@@ -13,6 +13,8 @@ Vue.use(ElementUI)
 // 引入 ECharts
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+import chinaMapData from './assets/data/china.json'
+Vue.prototype.$echarts.registerMap('china', chinaMapData)
 
 // 引入 normalize.css
 import 'normalize.css'

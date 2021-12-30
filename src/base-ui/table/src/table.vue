@@ -12,6 +12,7 @@
       :data="dataList"
       border
       style="width: 100%"
+      v-bind="childrenProps"
       @selection-change="selectChange"
     >
       <template v-if="showSelectColumn">
@@ -26,7 +27,7 @@
         ></el-table-column>
       </template>
       <template v-for="item in propList">
-        <el-table-column v-bind="item" align="center">
+        <el-table-column v-bind="item" align="center" show-overflow-tooltip>
           <template slot-scope="scope">
             <slot :name="item.slotName" :row="scope.row">
               {{ scope.row[item.prop] }}
@@ -35,16 +36,16 @@
         </el-table-column>
       </template>
     </el-table>
-    <div class="footer">
+    <div class="footer" v-if="showFooter">
       <slot name="footer">
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :current-page="pageInfo.current"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="pageInfo.size"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
+          :total="listCount"
         >
         </el-pagination>
       </slot>
@@ -77,11 +78,38 @@ export default {
     showSelectColumn: {
       type: Boolean,
       default: false
+    },
+    listCount: {
+      type: Number,
+      default: 0
+    },
+    pageInfo: {
+      type: Object,
+      default: () => {
+        return {
+          size: 10,
+          current: 1
+        }
+      }
+    },
+    childrenProps: {
+      type: Object,
+      default: () => ({})
+    },
+    showFooter: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
     selectChange(row) {
       this.$emit('selectChange', row)
+    },
+    handleSizeChange(size) {
+      this.$emit('handleSizeChange', size)
+    },
+    handleCurrentChange(current) {
+      this.$emit('handleCurrentChange', current)
     }
   }
 }

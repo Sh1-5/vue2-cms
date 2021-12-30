@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import searchFormConfig from './src/search'
-import contentTableConfig from './src/content'
+import searchFormConfig from './config/search'
+import contentTableConfig from './config/content'
 
 import { getRoleList } from '@/api/main/system/role'
 

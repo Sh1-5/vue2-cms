@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       account: {
-        username: localCache.getCache('username') ?? '',
-        password: localCache.getCache('password') ?? ''
+        username: localCache.getCache('username') ?? 'coderwhy',
+        password: localCache.getCache('password') ?? '123456'
       },
       rules: {
         username: [
@@ -46,9 +46,6 @@ export default {
         ]
       }
     }
-  },
-  mounted() {
-    console.log(this.account)
   },
   methods: {
     login(isKeepPassword) {
