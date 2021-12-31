@@ -25,20 +25,6 @@ export default {
   computed: {
     option() {
       return {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
-          }
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
         grid: {
           left: '3%',
           right: '4%',

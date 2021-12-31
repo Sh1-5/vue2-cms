@@ -21,15 +21,6 @@ export default {
   computed: {
     option() {
       return {
-        toolbox: {
-          show: true,
-          feature: {
-            mark: { show: true },
-            dataView: { show: true, readOnly: false },
-            restore: { show: true },
-            saveAsImage: { show: true }
-          }
-        },
         series: [
           {
             name: '类别数据',

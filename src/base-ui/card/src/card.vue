@@ -3,7 +3,7 @@
     <el-card class="box-card">
       <template v-slot:header>
         <div class="card-header">
-          <span>{{ title }}</span>
+          <span style="font-weight: 700">{{ title }}</span>
         </div>
       </template>
       <div class="item">

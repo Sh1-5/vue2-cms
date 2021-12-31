@@ -2,7 +2,9 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/logo.png" alt="logo" />
-      <span v-if="!isCollapse" class="title">vue2-cms</span>
+      <span v-if="!isCollapse" class="title" @click="goToOverview"
+        >vue2-cms</span
+      >
     </div>
     <el-menu
       :collapse-transition="false"
@@ -71,6 +73,11 @@ export default {
       if (this.$route.path !== item.url) {
         this.$router.push(item.url)
       }
+    },
+    goToOverview() {
+      if (this.$route.path !== '/main/analysis/overview') {
+        this.$router.push('/main/analysis/overview')
+      }
     }
   }
 }
@@ -100,6 +107,7 @@ export default {
       font-size: 16px;
       font-weight: 700;
       color: #ffffff;
+      cursor: pointer;
     }
   }
 

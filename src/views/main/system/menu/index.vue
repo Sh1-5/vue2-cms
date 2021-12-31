@@ -36,7 +36,6 @@ export default {
   methods: {
     async initMenuList() {
       const res = await getMenuList()
-      console.log(res)
       this.dataList = res.list
     }
   }

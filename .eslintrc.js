@@ -17,7 +17,8 @@ module.exports = {
     'src/components/nav-menu/src/nav-menu.vue',
     'src/base-ui/form/src/form.vue',
     'src/base-ui/bread-crumb/src/bread-crumb.vue',
-    'src/base-ui/table/src/table.vue'
+    'src/base-ui/table/src/table.vue',
+    'src/base-ui/text-link/src/text-link.vue'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
