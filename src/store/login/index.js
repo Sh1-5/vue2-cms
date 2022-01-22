@@ -47,7 +47,7 @@ export default {
       localCache.setCache('userMenus', userMenus)
 
       // 4.跳到首页
-      router.push('/main')
+      router.push('/main').catch(() => {})
     },
     // 有缓存则将缓存中的信息放到 store 中
     loadLocalLogin(context) {
